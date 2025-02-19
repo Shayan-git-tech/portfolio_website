@@ -27,10 +27,16 @@ const Header = () => {
     setLastScrollY(currentScrollY);
   });
 
-  const handleItemClick = useCallback((label) => {
+  const handleItemClick = useCallback((label, href) => {
     setActiveItem(label);
     setMenuOpen(false);
+  
+    const section = document.querySelector(href);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
   }, []);
+  
 
   const toggleMenu = useCallback(() => {
     setMenuOpen((prev) => !prev);
@@ -101,14 +107,14 @@ const Header = () => {
         </button>
 
         <AnimatePresence>
-          {menuOpen && <MobileMenu FlipLink={FlipLink} navItems={navItems} onItemClick={handleItemClick} />}
+          {menuOpen && <MobileMenu FlipLink={FlipLink} navItems={navItems} activeItem={activeItem} onItemClick={handleItemClick} />}
         </AnimatePresence>
       </motion.div>
     </motion.header>
   );
 };
 
-const MobileMenu = React.memo(({ FlipLink, navItems, onItemClick }) => (
+const MobileMenu = React.memo(({ FlipLink, navItems, activeItem, onItemClick }) => (
   <motion.nav
     initial={{ opacity: 0, y: 10, scale: 0.95 }}
     animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -117,15 +123,20 @@ const MobileMenu = React.memo(({ FlipLink, navItems, onItemClick }) => (
     className="md:hidden absolute top-[65px] left-4 right-4 backdrop-blur-xl bg-black/60 border border-white/20 rounded-2xl shadow-xl p-4"
   >
     <div className="relative flex flex-col gap-4 text-white cursor-pointer">
-      {navItems.map((item) => (
-        <FlipLink
-          key={item.href}
-          href={item.href}
-          onClick={() => onItemClick(item.label)}
-        >
-          {item.label}
-        </FlipLink>
-      ))}
+    {navItems.map((item) => (
+  <FlipLink
+    key={item.href}
+    href={item.href}
+    isActive={activeItem === item.label}
+    onClick={(e) => {
+      e.preventDefault(); // Prevent default anchor behavior
+      onItemClick(item.label, item.href);
+    }}
+  >
+    {item.label}
+  </FlipLink>
+))}
+
     </div>
   </motion.nav>
 ));
