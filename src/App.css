@@ -1,7 +1,7 @@
 /* Custom cursor styling */
-*{
+/* *{
     cursor: none;
-}
+} */
 
 .cursor {
     position: fixed;
@@ -10,7 +10,31 @@
     pointer-events: none;
     background-color: gray;
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 12px;
+    height: 12px;
+  }
+  
+
+  /* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px; /* Thin scrollbar */
+  }
+  
+  /* Track (the background of scrollbar) */
+  ::-webkit-scrollbar-track {
+    background: #0e0e0e; /* Match background */
+    border-radius: 10px;
+  }
+  
+  /* Scrollbar thumb (the moving part) */
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, white, gray, black); /* Rainbow gradient */
+    border-radius: 10px;
+    transition: background 0.3s;
+  }
+  
+  /* Scrollbar thumb on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #888; /* Slightly lighter on hover */
   }
   

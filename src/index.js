@@ -4,19 +4,19 @@ import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { DarkModeProvider } from "./Components/Context/DarkMode";
 import { CursorProvider } from './Components/Context/CustomCursor';
+import { RevealTextProvider } from './Components/Context/RevealText';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* Both providers should wrap the App component */}
     <BrowserRouter>
+    <RevealTextProvider>
     <CursorProvider>
-      <DarkModeProvider>
         <App />
-      </DarkModeProvider>
     </CursorProvider>
+    </RevealTextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

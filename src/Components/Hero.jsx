@@ -1,86 +1,126 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { useCursor } from "./Context/CustomCursor";
-import { ArrowRight } from 'lucide-react';
+"use client";
+import React from "react"
 
-const Hero = () => {
+import { useEffect, useRef, useMemo } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useCursor } from "./Context/CustomCursor";
+import Image1 from "../Images/4.jpg";
+import Image2 from "../Images/5.jpg";
+import Image3 from "../Images/6.jpg";
+
+export default function Hero() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const mainControls = useAnimation();
+  const imageControls = useAnimation();
   const { setTextCursor, setDefaultCursor } = useCursor();
 
-  const textHoverProps = {
-    onMouseEnter: setTextCursor,
-    onMouseLeave: setDefaultCursor
-  };
+  // Optimize cursor events with useMemo
+  const textHoverProps = useMemo(
+    () => ({
+      onMouseEnter: setTextCursor,
+      onMouseLeave: setDefaultCursor,
+    }),
+    [setTextCursor, setDefaultCursor]
+  );
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start("visible");
+      imageControls.start("visible");
+    }
+  }, [isInView, mainControls, imageControls]);
+
+  // Memoized animation variants
+  const textVariants = useMemo(
+    () => ({
+      hidden: { opacity: 0, y: 20 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.8,
+          ease: "easeOut",
+        },
+      },
+    }),
+    []
+  );
+
+  const imageVariants = useMemo(
+    () => ({
+      hidden: { opacity: 0, scale: 0.8 },
+      visible: {
+        opacity: 1,
+        scale: 1,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut",
+        },
+      },
+    }),
+    []
+  );
 
   return (
-    <section className="bg-custom-radial dark:bg-custom-radial-dark text-gray-900 dark:text-gray-100 min-h-screen flex items-center justify-center px-6">
-      <div className="text-center max-w-5xl mx-auto">
-        {/* <motion.h1
-          className="text-5xl font-bold text-gray-800 dark:text-gray-100 mb-4"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          {...textHoverProps}
+    <div
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center bg-neutral-950 p-4 sm:p-6 md:p-8 text-white overflow-hidden"
+    >
+      <motion.h1
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl tracking-loose max-w-[1400px] leading-tight"
+        initial="hidden"
+        animate={mainControls}
+        variants={textVariants}
+        {...textHoverProps}
+      >
+        Merging technical expertise
+        <motion.span
+          className="mx-2 sm:mx-3 inline-block"
+          variants={imageVariants}
+          initial="hidden"
+          animate={imageControls}
         >
-          Hi, I'm <span className="text-blue-600 dark:text-blue-400">Shayan</span>
-        </motion.h1>
-
-        <motion.p
-          className="text-xl text-gray-600 dark:text-gray-300 mb-6"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          {...textHoverProps}
+          <img
+            src={Image1 || "/placeholder.svg"}
+            alt="image1"
+            loading="lazy"
+            className="w-20 sm:w-24 md:w-28 lg:w-32 h-12 sm:h-14 md:h-16 lg:h-20 rounded-[50px] inline-block border border-gray-600 object-cover will-change-transform"
+          />
+        </motion.span>
+        with design
+        <motion.span
+          className="mx-2 sm:mx-3 my-2 inline-block"
+          variants={imageVariants}
+          initial="hidden"
+          animate={imageControls}
         >
-          I build responsive, modern, and interactive web experiences.
-        </motion.p> */}
-
-        <motion.h2
-          className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 mb-6"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          {...textHoverProps}
+          <img
+            src={Image2 || "/placeholder.svg"}
+            alt="image2"
+            loading="lazy"
+            className="w-20 sm:w-24 md:w-28 lg:w-32 h-12 sm:h-14 md:h-16 lg:h-20 rounded-[50px] inline-block border border-gray-600 object-cover will-change-transform"
+          />
+        </motion.span>
+        finesse to create
+        <span className="font-instrument italic mx-2 sm:mx-3 inline-block font-thin opacity-70">
+          web experiences
+        </span>
+        <motion.span
+          className="mx-2 sm:mx-3 inline-block"
+          variants={imageVariants}
+          initial="hidden"
+          animate={imageControls}
         >
-          Hello! 👋 I'm Shayan, a Developer
-        </motion.h2>
-
-        <motion.h1
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-800 dark:text-gray-100 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
-          {...textHoverProps}
-        >
-          Designing with{' '}
-          <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-            Precision
-          </span>
-          , Delivering with{' '}
-          <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-            Impact
-          </span>
-          .
-        </motion.h1>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2 }}
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="group relative inline-flex items-center gap-2 px-6 py-3 bg-black/50 dark:bg-white/20 backdrop-blur-sm rounded-full text-white/70 dark:text-gray-100 font-medium transition-all hover:bg-white/20 hover:text-black"
-          >
-            Get in Touch
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur opacity-0 group-hover:opacity-100 transition-opacity" />
-          </motion.button>
-        </motion.div>
-      </div>
-    </section>
+          <img
+            src={Image3 || "/placeholder.svg"}
+            alt="image3"
+            loading="lazy"
+            className="w-20 sm:w-24 md:w-28 lg:w-32 h-12 sm:h-14 md:h-16 lg:h-20 rounded-[50px] inline-block border border-gray-600 object-cover will-change-transform"
+          />
+        </motion.span>
+        that leave lasting impressions.
+      </motion.h1>
+    </div>
   );
-};
-
-export default Hero;
-
+}

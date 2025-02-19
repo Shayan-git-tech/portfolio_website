@@ -1,6 +1,10 @@
+@import './assets/styles/fonts.css';
+@import '@fontsource/instrument-serif';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 
 body {
   margin: 0;
@@ -15,3 +19,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Disable Cursor on mobile */
+@media (max-width: 767px) {
+  .cursor {
+    display: none;
+  }
+}
+
+
