@@ -51,11 +51,11 @@ const Modal = memo(({ modal, projects }) => {
   }, [handleMouseMove])
 
   return (
-    <>
+    <div id="projects">
     
-    
+
       <motion.div
-      id="projects"
+        
         ref={modalContainer}
         variants={scaleAnimation}
         initial="initial"
@@ -102,7 +102,7 @@ const Modal = memo(({ modal, projects }) => {
         View
       </motion.div>
     
-    </>
+    </div>
   )
 })
 

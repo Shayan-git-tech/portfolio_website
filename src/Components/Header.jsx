@@ -105,18 +105,18 @@ const Header = () => {
               className="md:hidden absolute top-[65px] left-4 right-4 backdrop-blur-xl bg-black/60 border border-white/20 rounded-2xl shadow-xl p-4"
             >
               <div className="flex flex-col gap-4 text-white cursor-pointer">
-                <div>
-                  <FlipLink href="#about">About</FlipLink>
-                </div>
-                <div>
-                  <FlipLink href="#experience">Experience</FlipLink>
-                </div>
-                <div>
-                  <FlipLink href="#projects">Projects</FlipLink>
-                </div>
-                <div>
-                <a href="https://drive.google.com/file/d/1cZ11uoaLXYW3HaQnrd4XH5BTcz02tYn-/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a>
-                </div>
+              <a href="#about" className="cursor-pointer">
+              <FlipLink>About</FlipLink>
+            </a>
+            <a href="#experience" className="cursor-pointer">
+              <FlipLink>Experience</FlipLink>
+            </a>
+            <a href="#projects" className="cursor-pointer">
+              <FlipLink>Projects</FlipLink>
+            </a>
+            <div className="cursor-pointer">
+              <a href="https://drive.google.com/file/d/1cZ11uoaLXYW3HaQnrd4XH5BTcz02tYn-/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
               </div>
             </motion.nav>
           )}
