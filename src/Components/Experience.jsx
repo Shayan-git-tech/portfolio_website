@@ -55,10 +55,10 @@ const Experience = () => {
     ), [skills]);
 
     return (
-        <div className="relative flex flex-col md:flex-row h-full bg-[#0e0e0e] text-white px-6 md:px-12 py-12">
+        <div className="relative flex flex-col md:flex-row h-full bg-[#0e0e0e] text-white px-6 md:px-12 py-12" id="experience">
             {/* Sticky Left Section */}
             <motion.div
-                className="md:w-1/3 lg:w-1/4 sticky top-0 h-screen flex flex-col justify-center"
+                className="md:w-1/3 lg:w-1/4 sticky top-0 flex flex-col justify-center"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}

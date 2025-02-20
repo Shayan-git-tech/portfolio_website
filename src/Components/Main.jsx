@@ -11,16 +11,16 @@ export default function Main() {
   const { cursorVariant, variants } = useCursor();
 
   return (
-    <div
-      className="relative overflow-hidden w-full"
-
-    >
+    <div className="relative overflow-hidden w-full">
       <Header />
 
       {/* Page Transition Effect */}
       <AnimatePresence mode="wait">
         <PageTransition key="page-transition" />
-        <LazyRoutes />
+      </AnimatePresence>
+
+      <AnimatePresence mode="wait">
+        <LazyRoutes key="lazy-routes" />
       </AnimatePresence>
 
       {/* Custom Cursor */}

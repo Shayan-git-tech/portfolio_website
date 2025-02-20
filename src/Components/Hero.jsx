@@ -65,6 +65,7 @@ export default function Hero() {
   return (
     <div
       ref={ref}
+      id="hero"
       className="relative min-h-screen flex items-center justify-center bg-neutral-950 p-4 sm:p-6 md:p-8 text-white overflow-hidden"
     >
       <motion.h1

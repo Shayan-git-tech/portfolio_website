@@ -1,9 +1,7 @@
 "use client";
 import React from "react";
-
 import { motion } from "framer-motion";
-import { Twitter, Facebook, Instagram, Linkedin } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Github, Facebook, Instagram, Linkedin } from "lucide-react";
 import { useRevealText } from "./Context/RevealText";
 import { useMemo } from "react";
 
@@ -33,16 +31,20 @@ const Footer = () => {
 
   const socialLinks = useMemo(
     () => [
-      { icon: Twitter, href: "#", label: "Twitter" },
-      { icon: Facebook, href: "#", label: "Facebook" },
-      { icon: Instagram, href: "#", label: "Instagram" },
-      { icon: Linkedin, href: "#", label: "LinkedIn" },
+      { icon: Github, href: "https://github.com/Shayan-git-tech/portfolio_website", label: "Github" },
+      { icon: Facebook, href: "https://www.facebook.com/share/12GgycPbxRt/?mibextid=wwXIfr", label: "Facebook" },
+      { icon: Instagram, href: "https://www.instagram.com/ranashayankhan", label: "Instagram" },
+      { icon: Linkedin, href: "http://linkedin.com/in/shayan31", label: "LinkedIn" },
     ],
     []
   );
 
   const navLinks = useMemo(
-    () => ["HOME", "ABOUT", "WORK", "CONTACT", "RESUME"],
+    () => [
+      { name: "ABOUT", id: "about" },
+      { name: "EXPERIENCE", id: "experience" },
+      { name: "PROJECTS", id: "projects" }
+    ],
     []
   );
 
@@ -83,8 +85,14 @@ const Footer = () => {
                   variants={fadeIn}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() =>
+                    window.open(
+                      "https://drive.google.com/file/d/1cZ11uoaLXYW3HaQnrd4XH5BTcz02tYn-/view?usp=drive_link",
+                      "_blank"
+                    )
+                  }
                 >
-                  Get In Touch
+                  Hire Me
                 </motion.button>
               </motion.div>
             </div>
@@ -111,14 +119,14 @@ const Footer = () => {
                 variants={fadeIn}
                 className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8"
               >
-                {navLinks.map((link) => (
-                  <FlipLink key={link} href="/">
-                    <Link
-                      to="/"
+                {navLinks.map(({ name, id }) => (
+                  <FlipLink key={id} href={`#${id}`}>
+                    <a
+                      href={`#${id}`}
                       className="text-sm sm:text-base hover:text-gray-300 transition-colors"
                     >
-                      {link}
-                    </Link>
+                      {name}
+                    </a>
                   </FlipLink>
                 ))}
               </motion.nav>
@@ -131,14 +139,16 @@ const Footer = () => {
                 className="flex justify-center md:justify-end gap-4 sm:gap-6"
               >
                 {socialLinks.map(({ icon: Icon, href, label }) => (
-                  <Link
+                  <a
                     key={label}
-                    to={href}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="hover:text-gray-300 transition-colors"
                     aria-label={label}
                   >
                     <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </Link>
+                  </a>
                 ))}
               </motion.div>
             </div>

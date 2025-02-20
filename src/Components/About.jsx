@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 const Paragraph = lazy(() => import("./Paragraph"));
 
 const About = () => {
+
+  
   const value = useMemo(
     () =>
       "I blend the artistry of modern web development with cutting-edge technology to transform ideas into exceptional digital experiences.",
@@ -14,7 +16,7 @@ const About = () => {
   );
 
   return (
-    <section className="min-h-screen bg-black text-white px-4 py-20 md:py-32">
+    <section className="min-h-screen bg-black text-white px-4 py-20 md:py-32" id="about">
       <div className="max-w-[90rem] mx-auto">
         {/* Wrap Lazy Component in Suspense */}
         <Suspense fallback={<div>Loading...</div>}>

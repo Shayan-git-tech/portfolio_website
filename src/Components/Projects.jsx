@@ -52,14 +52,17 @@ const Modal = memo(({ modal, projects }) => {
 
   return (
     <>
+    
+    
       <motion.div
+      id="projects"
         ref={modalContainer}
         variants={scaleAnimation}
         initial="initial"
         animate={active ? "enter" : "closed"}
         style={{ left: mouseX, top: mouseY }}
-        className="h-[350px] w-[400px] fixed bg-white overflow-hidden pointer-events-none flex items-center justify-center"
-      >
+        className="sm:block h-[350px] w-[400px] fixed bg-white overflow-hidden pointer-events-none flex items-center justify-center"
+        >
         <motion.div
           style={{ top: `${index * -100}%` }}
           animate={{ top: `${index * -100}%` }}
@@ -98,6 +101,7 @@ const Modal = memo(({ modal, projects }) => {
       >
         View
       </motion.div>
+    
     </>
   )
 })
@@ -148,6 +152,7 @@ const scaleAnimation = {
 
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null)
+  
   const [modal, setModal] = useState({ active: false, index: 0 })
 
   return (

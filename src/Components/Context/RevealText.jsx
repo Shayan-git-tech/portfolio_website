@@ -6,7 +6,7 @@ const RevealTextContext = createContext();
 export const DURATION = 0.40;
 export const STAGGER = 0.055;
 
-const FlipLink = React.memo(({ children, href, className }) => {
+const FlipLink = React.memo(({ children, href, className, onClick }) => {
   const variants = useMemo(() => ({
     initial: { y: 0 },
     hovered: { y: "-120%" }
@@ -28,6 +28,7 @@ const FlipLink = React.memo(({ children, href, className }) => {
       className={`relative block overflow-hidden ${className}`}
       initial="initial"
       whileHover="hovered"
+      onClick={onClick}
     >
       <motion.div
         variants={variants}
