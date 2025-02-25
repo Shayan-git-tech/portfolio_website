@@ -57,6 +57,7 @@ const Experience = () => {
     return (
         <div className="relative flex flex-col md:flex-row h-full bg-[#0e0e0e] text-white px-6 md:px-12 py-12" id="experience">
             {/* Sticky Left Section */}
+   
             <motion.div
                 className="md:w-1/3 lg:w-1/4 sticky top-0 flex flex-col justify-center"
                 initial={{ opacity: 0, x: -50 }}
@@ -66,9 +67,10 @@ const Experience = () => {
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Experience</h2>
                 <p className="text-lg md:text-xl text-gray-400 mt-2">Professional Journey</p>
             </motion.div>
+            
 
             {/* Scrollable Right Section */}
-            <motion.div className="md:w-2/3 lg:w-3/4 h-full md:pl-12 pt-10 md:pt-0 overflow-y-scroll scrollbar-hide pr-4"
+            <motion.div className="md:w-2/3 lg:w-3/4 h-full md:pl-12 pt-10 md:pt-0 overflow-y-scroll scrollbar-hide pr-4 relative top-0"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}

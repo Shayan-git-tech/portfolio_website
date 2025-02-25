@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "./Header";
 import LazyRoutes from "./LazyRoutes";
@@ -7,21 +7,35 @@ import { useCursor } from "./Context/CustomCursor";
 import PageTransition from "./PageTransition";
 import "../App.css";
 
-export default function Main() {
+export default function Main({ showTransition, setShowTransition }) {
   const { cursorVariant, variants } = useCursor();
+  const [showContent, setShowContent] = useState(!showTransition);
+
+  useEffect(() => {
+    if (showTransition) {
+      setTimeout(() => {
+        setShowContent(true);
+        setShowTransition(false); // Hide the transition immediately when it's done
+      }, 1500); // Match duration with `PageTransition`
+    }
+  }, [showTransition, setShowTransition]);
 
   return (
     <div className="relative overflow-hidden w-full">
-      <Header />
-
       {/* Page Transition Effect */}
       <AnimatePresence mode="wait">
-        <PageTransition key="page-transition" />
+        {showTransition && <PageTransition key="page-transition" />}
       </AnimatePresence>
 
-      <AnimatePresence mode="wait">
+      {/* Main Content */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={showContent ? { opacity: 1 } : {}}
+        transition={{ duration: 0.8 }}
+      >
+        <Header />
         <LazyRoutes key="lazy-routes" />
-      </AnimatePresence>
+      </motion.div>
 
       {/* Custom Cursor */}
       <motion.div
