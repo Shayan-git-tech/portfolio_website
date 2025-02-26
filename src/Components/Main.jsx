@@ -16,7 +16,7 @@ export default function Main({ showTransition, setShowTransition }) {
       setTimeout(() => {
         setShowContent(true);
         setShowTransition(false); // Hide the transition immediately when it's done
-      }, 1500); // Match duration with `PageTransition`
+      }, 1700); // Match duration with `PageTransition`
     }
   }, [showTransition, setShowTransition]);
 
