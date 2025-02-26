@@ -15,6 +15,14 @@ export default function App() {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    if (window.performance) {
+      if (performance.navigation.type === 1) {
+        window.history.replaceState(null, "", "/");
+      }
+    }
+  }, []);
+  
   return (
     <LenisScroller>
       <AnimatePresence mode="wait">
