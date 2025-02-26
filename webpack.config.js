@@ -52,6 +52,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: "public/favicon.ico", to: "favicon.ico" }, // Copy favicon to build folder
+        { from: "public/manifest.json", to: "manifest.json" }, // ✅ Copy manifest.json
+
       ],
     }),
     
