@@ -17,7 +17,8 @@ export default function App() {
 
   useEffect(() => {
     if (window.performance) {
-      if (performance.navigation.type === 1) {
+      const [navigationEntry] = performance.getEntriesByType("navigation");
+      if (navigationEntry && navigationEntry.type === "reload") {
         window.history.replaceState(null, "", "/");
       }
     }
