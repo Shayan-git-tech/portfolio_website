@@ -1,5 +1,7 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
+
 
 module.exports = {
   mode: "development", // Change to "production" for production builds
@@ -45,7 +47,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "public", "index.html"),
       filename: "index.html",
+      favicon: path.resolve(__dirname, "public", "favicon.ico"), // Add this line
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "public/favicon.ico", to: "favicon.ico" }, // Copy favicon to build folder
+      ],
+    }),
+    
   ],
   devServer: {
     static: {
