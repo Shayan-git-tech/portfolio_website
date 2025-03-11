@@ -66,7 +66,7 @@ export default function Hero() {
     <div
       ref={ref}
       id="hero"
-      className="relative min-h-screen flex items-center justify-center bg-neutral-950 p-4 sm:p-6 md:p-8 text-white overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center bg-black p-4 sm:p-6 md:p-8 text-white overflow-hidden"
     >
       <motion.h1
         className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl tracking-loose max-w-[1400px] leading-tight"

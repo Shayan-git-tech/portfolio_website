@@ -20,6 +20,8 @@ code {
     monospace;
 }
 
+
+
 /* Disable Cursor on mobile */
 @media (max-width: 767px) {
   .cursor {
