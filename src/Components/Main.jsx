@@ -1,52 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "./Header";
 import LazyRoutes from "./LazyRoutes";
 import FuzzyOverlay from "./FuzzyOverlay";
-import { useCursor } from "./Context/CustomCursor";
 import PageTransition from "./PageTransition";
+import { SectionRefContext } from "./Context/SectionRefContext";
 import "../App.css";
 
 export default function Main({ showTransition, setShowTransition }) {
-  const { cursorVariant, variants } = useCursor();
   const [showContent, setShowContent] = useState(!showTransition);
+
+  // Create refs here and pass them to context
+  const AboutRef = useRef(null);
+  const ExperienceRef = useRef(null);
+  const ProjectsRef = useRef(null);
 
   useEffect(() => {
     if (showTransition) {
       setTimeout(() => {
         setShowContent(true);
-        setShowTransition(false); // Hide the transition immediately when it's done
-      }, 1700); // Match duration with `PageTransition`
+        setShowTransition(false);
+      }, 1700); // Match duration with PageTransition
     }
   }, [showTransition, setShowTransition]);
 
+
   return (
-    <div className="relative overflow-hidden w-full">
-      {/* Page Transition Effect */}
-      <AnimatePresence mode="wait">
-        {showTransition && <PageTransition key="page-transition" />}
-      </AnimatePresence>
+    <SectionRefContext.Provider value={{ AboutRef, ExperienceRef, ProjectsRef }}>
+      <div className="relative overflow-hidden">
+        {/* Page Transition Effect */}
+        <AnimatePresence mode="wait">
+          {showTransition && <PageTransition key="page-transition" />}
+        </AnimatePresence>
 
-      {/* Main Content */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={showContent ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8 }}
-      >
-        <Header />
-        <LazyRoutes key="lazy-routes" />
-      </motion.div>
+        {/* Main Content */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={showContent ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8 }}
+          className="relative"
+        >
+          <Header />
+          <LazyRoutes />
+        </motion.div>
 
-      {/* Custom Cursor */}
-      <motion.div
-        className="cursor"
-        variants={variants}
-        animate={cursorVariant}
-        transition={{ duration: 0.1, ease: "easeIn" }}
-      />
-
-      {/* Overlay Effect */}
-      <FuzzyOverlay />
-    </div>
+        {/* Overlay Effect */}
+        <FuzzyOverlay />
+      </div>
+    </SectionRefContext.Provider>
   );
 }

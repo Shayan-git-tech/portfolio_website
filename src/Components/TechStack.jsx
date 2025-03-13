@@ -57,7 +57,7 @@ const techStack = [
 // Duplicate the items to create a seamless infinite loop
 const duplicatedTechStack = [...techStack, ...techStack]
 
-const TechStack = () => {
+const TechStack = ({ TechRef}) => {
   const [isMobile, setIsMobile] = useState(false)
   const itemsPerView = isMobile ? 2 : 4
 
@@ -80,7 +80,7 @@ const TechStack = () => {
   }, [])
 
   return (
-    <div className="py-16 bg-black font-matter">
+    <div className="py-16 bg-black font-matter" ref={TechRef}>
       <div className="max-w-[90rem] mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <p className="text-gray-400 uppercase tracking-widest mb-2">SKILLS</p>

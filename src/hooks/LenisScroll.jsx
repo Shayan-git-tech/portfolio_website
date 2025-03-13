@@ -43,12 +43,12 @@ const LenisScroller = ({ children }) => {
     <>
       {/* Fixed scroll progress bar */}
       <div
-        className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50"
+        className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50 overflow-hidden"
         style={{ transform: `scaleX(${scrollProgress})`, transformOrigin: 'left' }}
       />
 
       {/* Wrap children in a relative container */}
-      <div className="relative">
+      <div className="relative overflow-hidden">
         {children}
       </div>
     </>

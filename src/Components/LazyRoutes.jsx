@@ -1,28 +1,50 @@
-"use client";
-
-import React, { lazy, Suspense } from "react";
+import React, {lazy, forwardRef } from "react";
+import { useSectionRef } from "./Context/SectionRefContext";
 import "../App.css";
-const Hero = lazy(() => import("./Hero"));
-const About = lazy(() => import("./About"));
-const Projects = lazy(() => import("./Projects"));
-const Footer = lazy(() => import("./Footer"));
-const Experience = lazy(() => import("./Experience"));
-const TechStack = lazy(() => import("./TechStack"));
 
-export default function HomePage() {
+
+const Hero = lazy(() => import("./Hero"));
+const AboutComponent = lazy(() => import("./About"));
+const ProjectsComponent = lazy(() => import("./Projects"));
+const Footer = lazy(() => import("./Footer"));
+const ExperienceComponent = lazy(() => import("./Experience"));
+const TechStackComponent = lazy(() => import("./TechStack"));
+
+const TechStack = forwardRef((props, ref) => (
+  <div ref={ref}>
+    <TechStackComponent {...props} />
+  </div>
+));
+
+const About = forwardRef((props, ref) => (
+  <div ref={ref}>
+    <AboutComponent {...props} />
+  </div>
+));
+
+const Experience = forwardRef((props, ref) => (
+  <div ref={ref}>
+    <ExperienceComponent {...props} />
+  </div>
+));
+
+const Projects = forwardRef((props, ref) => (
+  <div ref={ref}>
+    <ProjectsComponent {...props} />
+  </div>
+));
+
+export default function LazyRoutes() {
+  const { AboutRef, ExperienceRef, ProjectsRef } = useSectionRef();
+
   return (
-    <>
-      <Suspense fallback={<div className="text-white grid items-center">Loading...</div>}>
-        <main>
-          <Hero />
-          <TechStack  autoplay={true} pauseOnHover={true}/>
-            <About />
-            <Experience/>
-            <Projects />
-         
-            <Footer />
-        </main>
-      </Suspense>
-    </>
+    <main>
+      <Hero />
+      <TechStack />
+      <About ref={AboutRef} />
+      <Experience ref={ExperienceRef} />
+      <Projects ref={ProjectsRef} />
+      <Footer />
+    </main>
   );
 }

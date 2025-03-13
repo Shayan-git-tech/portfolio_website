@@ -14,7 +14,7 @@ export default function FuzzyOverlay() {
         ease: "easeInOut",
         repeatType: "mirror",
       }}
-      className="bg-black-noise pointer-events-none absolute -inset-[100%] opacity-[15%] z-10"
+      className="bg-black-noise pointer-events-none fixed -inset-[100%] opacity-[15%] z-10"
     />
   )
 }

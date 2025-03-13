@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
+
 import LenisScroller from "./hooks/LenisScroll";
 import Loader from "./Components/Context/Loader";
 import Main from "./Components/Main";
@@ -24,6 +25,7 @@ export default function App() {
     }
   }, []);
   
+  
   return (
     <LenisScroller>
       <AnimatePresence mode="wait">
@@ -38,5 +40,6 @@ export default function App() {
         )}
       </AnimatePresence>
     </LenisScroller>
+
   );
 }

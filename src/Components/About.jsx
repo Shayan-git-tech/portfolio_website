@@ -1,12 +1,11 @@
 "use client";
 import React, { useMemo, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 
 // Lazy load the Paragraph component
 const Paragraph = lazy(() => import("./Paragraph"));
 
-const About = () => {
+const About = ({ AboutRef }) => {
   const value = useMemo(
     () =>
       "I blend the artistry of modern web development with cutting-edge technology to transform ideas into exceptional digital experiences.",
@@ -15,8 +14,9 @@ const About = () => {
 
   return (
     <section
-      className="min-h-screen bg-black text-white px-4 py-20 md:py-32"
+      className="min-h-screen bg-black text-white px-4 py-20 md:py-32 relative"
       id="about"
+      ref={AboutRef}
     >
       <div className="max-w-[90rem] mx-auto">
         {/* Wrap Lazy Component in Suspense */}
@@ -57,7 +57,7 @@ const About = () => {
                 }
               </motion.p>
             ))}
-            <Link to="#projects">
+            <a href="#projects">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ const About = () => {
               >
                 View Projects →
               </motion.div>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

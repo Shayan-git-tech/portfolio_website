@@ -51,7 +51,7 @@ const Modal = memo(({ modal, projects }) => {
   }, [handleMouseMove])
 
   return (
-    <div id="projects">
+    <div >
     
 
       <motion.div
@@ -150,13 +150,13 @@ const scaleAnimation = {
   closed: { scale: 0, x: "-50%", y: "-50%", transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] } },
 }
 
-const Projects = () => {
+const Projects = ({ ProjectsRef }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null)
   
   const [modal, setModal] = useState({ active: false, index: 0 })
 
   return (
-    <section className="py-10 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-black">
+    <section className="py-10 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-black" ref={ProjectsRef} id="projects">
       <div className="max-w-[90rem] mx-auto">
         <h2 className="text-xl sm:text-2xl mb-8 sm:mb-12 text-white pl-0 sm:pl-4">Projects</h2>
 

@@ -12,7 +12,7 @@ function Paragraph({ value }) {
     const words = value.split(" ");
     return (
         <p
-            className="flex flex-wrap bg-black text-[#fafafa] text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl leading-tight sm:leading-loose md:leading-tight tracking-tighter font-matter mb-20"
+            className="flex flex-wrap bg-black text-[#fafafa] text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl leading-tight sm:leading-loose md:leading-tight tracking-tighter font-matter mb-20 relative"
             ref={element}
         >
             {words.map((word, i) => {
