@@ -166,6 +166,7 @@ const Projects = ({ ProjectsRef }) => {
             <motion.a
               key={project.title}
               href={project.href}
+              target="_blank"
               className="block border-t-4 border-neutral-300 py-4 sm:py-6 md:py-8 group relative"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
