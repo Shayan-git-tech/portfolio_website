@@ -3,8 +3,9 @@ import React from "react"
 
 import { motion, useAnimation, useMotionValue } from "framer-motion"
 import { useRef, useEffect, useState, useCallback, memo } from "react"
-import c2montreal from '../Images/c2montreal.png';
-import officestudio from '../Images/officestudio.png';
+import spisakagency from '../Images/spisakagency.png';
+import alfaisalracks from '../Images/alfaisalracks.png';
+import dafl from '../Images/DAFL.png';
 import locomotive from '../Images/locomotive.png';
 import silencio from '../Images/silencio.png';
 
@@ -111,15 +112,15 @@ const projects = [
     title: "Spisak Agency",
     tool: "Website ‎ • ‎ Wix ‎ • ‎ Agency",
     href: "https://spisakagency.com/",
-    src: c2montreal,
-    color: "#000000",
+    src: spisakagency,
+    color: "#ffd7c5",
   },
   {
     title: "Al-Faisal Racks",
     tool: "Website ‎ • ‎ Wordpress ‎ • ‎ Industry",
     href: "https://alfaisalracks.com/",
-    src: officestudio,
-    color: "#8C8C8C",
+    src: alfaisalracks,
+    color: "#ffe1a5",
   },
   {
     title: "The Wellness Brothers",
@@ -136,11 +137,11 @@ const projects = [
     color: "#706D63",
   },
   {
-    title: "LightStore PK",
-    tool: "Website ‎ • ‎ Wordpress ‎ • ‎ Store",
-    href: "https://lightstorepk.com/",
-    src: silencio,
-    color: "#706D63",
+    title: "DAFL",
+    tool: "Website ‎ • ‎ Wix ‎ • ‎ Sports",
+    href: "https://www.dubaifootball.com/",
+    src: dafl,
+    color: "#e0e7df",
   },
 ]
 
