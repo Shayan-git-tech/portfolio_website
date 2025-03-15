@@ -4,11 +4,14 @@ import Header from "./Header";
 import LazyRoutes from "./LazyRoutes";
 import FuzzyOverlay from "./FuzzyOverlay";
 import PageTransition from "./PageTransition";
+import {useCursor} from "./Context/CustomCursor"
 import { SectionRefContext } from "./Context/SectionRefContext";
 import "../App.css";
 
 export default function Main({ showTransition, setShowTransition }) {
   const [showContent, setShowContent] = useState(!showTransition);
+  const { cursorVariant, variants } = useCursor()
+
 
   // Create refs here and pass them to context
   const AboutRef = useRef(null);
@@ -46,6 +49,13 @@ export default function Main({ showTransition, setShowTransition }) {
 
         {/* Overlay Effect */}
         <FuzzyOverlay />
+         {/* Custom cursor */}
+         <motion.div
+              className="cursor"
+              variants={variants}
+              animate={cursorVariant}
+              transition={{ duration: 0.1}}
+            />
       </div>
     </SectionRefContext.Provider>
   );

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 // Lazy load the Paragraph component
 const Paragraph = lazy(() => import("./Paragraph"));
 
-const About = ({ AboutRef }) => {
+const About = ({ AboutRef, ProjectsRef }) => {
   const value = useMemo(
     () =>
       "I blend the artistry of modern web development with cutting-edge technology to transform ideas into exceptional digital experiences.",
@@ -57,16 +57,16 @@ const About = ({ AboutRef }) => {
                 }
               </motion.p>
             ))}
-            <a href="#projects">
-              <motion.div
+            <motion.button
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1 }}
-                className="inline-block mt-8 text-lg border-b-2 border-white hover:border-gray-400 transition-colors"
+                onClick={() => ProjectsRef?.current?.scrollIntoView({ behavior: "smooth" })}
+                className="inline-block mt-8 text-lg border-b-2 border-white hover:border-gray-400 transition-colors cursor-pointer z-10"
               >
                 View Projects →
-              </motion.div>
-            </a>
+              </motion.button>
+            
           </div>
         </div>
       </div>

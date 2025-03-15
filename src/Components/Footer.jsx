@@ -1,9 +1,11 @@
 "use client";
-import React from "react";
+import React, {useMemo} from "react";
 import { motion } from "framer-motion";
 import { Github, Facebook, Instagram, Linkedin } from "lucide-react";
 import { useRevealText } from "./Context/RevealText";
-import { useMemo } from "react";
+import { useSectionRef } from "./Context/SectionRefContext";
+
+
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -28,6 +30,8 @@ const slideInRight = {
 
 const Footer = () => {
   const { FlipLink } = useRevealText();
+    const { AboutRef, ExperienceRef, ProjectsRef } = useSectionRef();
+  
 
   const socialLinks = useMemo(
     () => [
@@ -119,16 +123,25 @@ const Footer = () => {
                 variants={fadeIn}
                 className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8"
               >
-                {navLinks.map(({ name, id }) => (
-                  <FlipLink key={id} href={`#${id}`}>
-                    <a
-                      href={`#${id}`}
-                      className="text-sm sm:text-base hover:text-gray-300 transition-colors"
-                    >
-                      {name}
-                    </a>
-                  </FlipLink>
-                ))}
+                {navLinks.map(({ name, id }) => {
+  const sectionRef = id === "about" 
+    ? AboutRef 
+    : id === "experience" 
+    ? ExperienceRef 
+    : ProjectsRef;
+
+  return (
+    <FlipLink key={id}>
+      <button
+        onClick={() => sectionRef?.current?.scrollIntoView({ behavior: "smooth" })}
+        className="text-sm sm:text-base hover:text-gray-300 transition-colors"
+      >
+        {name}
+      </button>
+    </FlipLink>
+  );
+})}
+
               </motion.nav>
 
               <motion.div

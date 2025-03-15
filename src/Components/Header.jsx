@@ -1,51 +1,49 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useCallback } from "react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useRevealText } from "./Context/RevealText";
 import { useSectionRef } from "./Context/SectionRefContext";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const { FlipLink } = useRevealText();
+  const { scrollY } = useScroll();
   const { AboutRef, ExperienceRef, ProjectsRef } = useSectionRef();
 
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsVisible(latest < lastScrollY || latest < 100);
+    setLastScrollY(latest);
+  });
+
   const toggleMenu = useCallback(() => {
     setMenuOpen((prev) => !prev);
   }, []);
 
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden"; // Disable scroll when menu is open
-    } else {
-      document.body.style.overflow = "auto"; // Enable scroll when menu is closed
-    }
-    console.log("Body overflow:", document.body.style.overflow);
-
-
-    return () => {
-      document.body.style.overflow = "auto"; // Reset on unmount
-    };
-  }, [menuOpen]);
-
   return (
     <motion.header
       className="z-50 fixed inset-x-0 top-0 flex justify-center mt-5 px-4"
-      initial={{ y: 0 }}
-      animate={{ y: 0 }}
+      initial="visible"
+      animate={isVisible ? "visible" : "hidden"}
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: -100 },
+      }}
       transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
     >
       <motion.div
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex items-center justify-between backdrop-blur-xl bg-black/60 border border-white/20 rounded-full w-full max-w-[1000px] h-[55px] px-4 sm:px-6 shadow-lg shadow-black/5 relative"
+        className="flex items-center justify-between backdrop-blur-xl bg-black/60 border border-white/20 rounded-full w-full max-w-[1000px] h-[55px] px-4 sm:px-6 shadow-lg shadow-black/5"
       >
         {/* Logo */}
         <motion.a

@@ -16,11 +16,12 @@ const TechStack = forwardRef((props, ref) => (
   </div>
 ));
 
-const About = forwardRef((props, ref) => (
+const About = forwardRef(({ ProjectsRef, ...props }, ref) => (
   <div ref={ref}>
-    <AboutComponent {...props} />
+    <AboutComponent ProjectsRef={ProjectsRef} {...props} />
   </div>
 ));
+
 
 const Experience = forwardRef((props, ref) => (
   <div ref={ref}>
@@ -41,7 +42,7 @@ export default function LazyRoutes() {
     <main>
       <Hero />
       <TechStack />
-      <About ref={AboutRef} />
+      <About ref={AboutRef} ProjectsRef={ProjectsRef} />
       <Experience ref={ExperienceRef} />
       <Projects ref={ProjectsRef} />
       <Footer />

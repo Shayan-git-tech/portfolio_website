@@ -81,7 +81,7 @@ const TechStack = ({ TechRef}) => {
 
   return (
     <div className="py-16 bg-black font-matter" ref={TechRef}>
-      <div className="max-w-[90rem] mx-auto px-4 sm:px-6">
+      <div className="w-screen mx-auto">
         <div className="text-center mb-12">
           <p className="text-gray-400 uppercase tracking-widest mb-2">SKILLS</p>
           <h2 className="text-4xl sm:text-5xl font-bold text-white">My Tech Stack</h2>
