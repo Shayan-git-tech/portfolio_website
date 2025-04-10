@@ -5,6 +5,8 @@ import { motion, useAnimation, useMotionValue } from "framer-motion"
 import { useRef, useEffect, useState, useCallback, memo } from "react"
 import spisakagency from '../Images/spisakagency.png';
 import alfaisalracks from '../Images/alfaisalracks.png';
+import brainwave from '../Images/Brainwave.png';
+import fitnesswebsite from '../Images/fitness-website.png';
 import dafl from '../Images/DAFL.png';
 import locomotive from '../Images/locomotive.png';
 import silencio from '../Images/silencio.png';
@@ -108,6 +110,20 @@ const Modal = memo(({ modal, projects }) => {
 })
 
 const projects = [
+  {
+    title: "BrainWave",
+    tool: "Website ‎ • ‎ React ‎ • ‎ AI",
+    href: "https://shayan-git-tech.github.io/Brainwave/",
+    src: brainwave,
+    color: "#EFE8D3",
+  },
+  {
+    title: "Fitness Website",
+    tool: "Website ‎ • ‎ React ‎ • ‎ Rapid API",
+    href: "https://monumental-horse-dc21f2.netlify.app/",
+    src: fitnesswebsite,
+    color: "#ffd7c5",
+  },
   {
     title: "Spisak Agency",
     tool: "Website ‎ • ‎ Wix ‎ • ‎ Agency",

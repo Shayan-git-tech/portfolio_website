@@ -67,7 +67,7 @@ const Header = () => {
               <FlipLink>Projects</FlipLink>
             </span>
             <div className="cursor-pointer">
-              <a href="https://drive.google.com/file/d/1cZ11uoaLXYW3HaQnrd4XH5BTcz02tYn-/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a>
+              <a href="https://drive.google.com/file/d/1B6_pvfLHG_Pn7pGXIclPThPvh-lRVQEb/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
             </div>
           </div>
         </nav>
