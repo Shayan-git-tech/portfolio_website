@@ -85,13 +85,13 @@ const Footer = () => {
                 </motion.h2>
 
                 <motion.button
-                  className="px-6 py-6 sm:px-8 sm:py-8 border border-white rounded-full hover:bg-white hover:text-black transition-colors duration-300 text-sm sm:text-base"
+                  className="px-6 py-6 sm:px-8 sm:py-8 border border-white rounded-full hover:bg-white hover:text-black transition-colors duration-300 text-sm sm:text-base cursor-pointer"
                   variants={fadeIn}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() =>
                     window.open(
-                      "https://drive.google.com/file/d/1cZ11uoaLXYW3HaQnrd4XH5BTcz02tYn-/view?usp=drive_link",
+                      "https://drive.google.com/file/d/1B6_pvfLHG_Pn7pGXIclPThPvh-lRVQEb/view?usp=sharing",
                       "_blank"
                     )
                   }
